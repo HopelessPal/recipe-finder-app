@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import RecipeList from "./components/RecipeList";
 import LoadingSpinner from "./components/LoadingSpinner";
+import { API_ID, API_KEY } from "./config";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
@@ -11,7 +12,7 @@ const App = () => {
   const fetchRecipes = async (query) => {
     setIsLoading(true);
     const response = await fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=1e088b1f&app_key=9ef6fe947380b3c10e2ac1ec4785427d`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${API_ID}&app_key=${API_KEY}`
     );
     const data = await response.json();
     setRecipes(data.hits || []);
